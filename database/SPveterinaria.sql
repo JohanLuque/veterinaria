@@ -55,7 +55,7 @@ BEGIN
 	INNER JOIN Clientes ON Mascotas.idCliente = Clientes.idCliente
 	INNER JOIN Razas ON Mascotas.idRaza = Razas.idRaza
 	INNER JOIN Animales ON Razas.idAnimal = Animales.idAnimal
-	WHERE Mascotas.idMascota = 1 _idMascota;
+	WHERE Mascotas.idMascota =  _idMascota;
 END $$
 
 DELIMITER $$

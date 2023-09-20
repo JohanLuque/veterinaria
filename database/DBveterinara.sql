@@ -1,6 +1,6 @@
-CREATE DATABASE veteninaria;
+CREATE DATABASE veterinaria;
 
-USE veteninaria;
+USE veterinaria;
 
 CREATE TABLE Animales
 (
