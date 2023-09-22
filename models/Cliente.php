@@ -16,14 +16,14 @@ Class Cliente extends Conexion{
       $query->execute(
         array(
             $data['apellidos'],
-            $data['apellidos'],
+            $data['nombres'],
             $data['dni'],
-            $data['claveAcceso'],
+            $data['claveAcceso']
         )
       );
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }catch(Exception $e){
-      die($e->getCode());
+      die($e->getMessage());
     }
   }
   public function search($data= []){
@@ -39,15 +39,11 @@ Class Cliente extends Conexion{
       die($e->getCode());
     }
   }
-  public function login($data= []){
+  public function login($dni=""){
     try{
       $query = $this->connection->prepare("CALL spu_login_clientes(?)");
-      $query->execute(
-        array(
-            $data['dni'],
-        )
-      );
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+      $query->execute(array($dni));
+      return $query->fetch(PDO::FETCH_ASSOC);
     }catch(Exception $e){
       die($e->getCode());
     }

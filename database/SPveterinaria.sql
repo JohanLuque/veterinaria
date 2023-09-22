@@ -3,10 +3,10 @@ USE veterinaria;
 DELIMITER $$
 CREATE PROCEDURE spu_registrar_clientes
 (
-IN _apellidos		VARCHAR(30),
+IN _apellidos			VARCHAR(30),
 IN _nombres			VARCHAR(30),
 IN _dni				CHAR(8),
-IN _claveAcceso	VARCHAR(200)
+IN _claveAcceso			VARCHAR(200)
 )
 BEGIN
 	INSERT INTO Clientes(apellidos, nombres, dni, claveAcceso) VALUES

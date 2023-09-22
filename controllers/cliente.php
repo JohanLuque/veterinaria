@@ -7,20 +7,40 @@ if(isset($_POST['operacion'])){
 
   switch($_POST['operacion']){
     case 'add':
+      $claveOriginal = $_POST['claveAcceso'];
+      $claveEncriptada = password_hash($claveOriginal, PASSWORD_BCRYPT);
+
       $parametros = [
         "apellidos"       => $_POST['apellidos'],
         "nombres"         => $_POST['nombres'],
         "dni"             => $_POST['dni'],
-        "claveAcceso"     => $_POST['claveAcceso']
+        "claveAcceso"     => $claveEncriptada
     ];
       echo json_encode($cliente->create($parametros));
       break;
     case "login":
-      case 'add':
-        $parametros = [
-          "dni"             => $_POST['dni']
+      $respuesta = [
+        "login"       => false,
+        "apellidos"   => "",
+        "nombres"     => "",
+        "mensaje"     =>""
       ];
-      echo json_encode($cliente->login($parametros));
+
+      $data = $cliente->login($_POST['dni']);
+      $claveIngresada = $_POST['claveAcceso'];
+
+      if($data){
+        if(password_verify($claveIngresada, $data['claveAcceso'])){
+          $respuesta['login'] = true;
+          $respuesta['apellidos'] = $data['apellidos'];
+          $respuesta['nombres']   = $data['nombres'];
+        }else{
+          $respuesta['mensaje'] = 'Contraseña incorrecta';
+        }
+      }else{
+        $respuesta['mensaje'] = 'El usuario no existe'; 
+      }
+      echo json_encode($respuesta);
       break;
   }
 }

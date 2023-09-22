@@ -86,3 +86,5 @@ SELECT * FROM Animales;
 SELECT * FROM Razas;
 SELECT * FROM Clientes;
 SELECT * FROM Mascotas;
+
+UPDATE clientes SET claveAcceso = "$2y$10$Cnti6nMp5glSTbDRJy9bAOHWeYXI5uRSvEcKnKFMA8qU2D6jJFNCW";
