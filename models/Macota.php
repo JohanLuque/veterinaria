@@ -42,4 +42,24 @@ class Mascota extends Conexion{
       die($e->getCode());
     }
   }
+
+  public function lisAnimal(){
+    try{
+      $query = $this->connection->prepare("CALL spu_listar_Animal()");
+      $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }catch(Exception $e){
+      die($e->getMessage());
+    }
+  }
+
+  public function readRaces($id){
+    try{
+      $query = $this->connection->prepare("CALL spu_listar_razas(?)");
+      $query->execute($id);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }catch(Exception $e){
+      die($e->getCode());
+    }
+  }
 }

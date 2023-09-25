@@ -1,4 +1,4 @@
-USE veterinaria;
+ USE veterinaria;
 
 DELIMITER $$
 CREATE PROCEDURE spu_registrar_clientes
@@ -67,4 +67,27 @@ BEGIN
 	SELECT *
 	FROM clientes
 	WHERE dni = _dni;
+END $$
+
+DELIMITER $$
+CREATE PROCEDURE spu_listar_Animal()
+BEGIN 
+	SELECT * FROM animales;
+END $$
+
+ DELIMITER $$
+CREATE PROCEDURE spu_listar_razas( IN _id INT)
+BEGIN
+	SELECT idraza, 
+	nombreRaza 
+	FROM razas
+	WHERE idanimal = _id;
+END $$
+
+DELIMITER $$
+CREATE PROCEDURE spu_listar_clientes()
+BEGIN
+	SELECT idCliente, 
+	CONCAT(apellidos, (' '), nombres) AS 'Completo'
+	FROM clientes;
 END $$

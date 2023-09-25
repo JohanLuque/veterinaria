@@ -76,11 +76,11 @@ INSERT INTO Clientes(apellidos, nombres, dni, claveAcceso) VALUES
 ('Corzo Carbajal', 'Aldo Alfredo', '12345666', '12345');
 
 INSERT INTO Mascotas(nombre, fotografia, color, genero, idCliente, idRaza) VALUES
-('Carrizo', 'carrizo.jpg', 'Negro y Rubio', 'H', 1,4),
-('Blanca', 'blanca.jpg', 'Blanco', 'H', 1,6),
-('Conejo', 'conejo.jpg', 'Rubio', 'M', 2,8),
-('sofi', 'sofi.jpg', 'Rubio', 'H', 2,3),
-('Garfield', 'carfield.jpg', 'Rubio', 'M', 2,12);
+('Carrizo', 'perro1.jpg', 'Negro y Rubio', 'H', 1,4),
+('Blanca', 'perro2.jpg', 'Blanco', 'H', 1,6),
+('Conejo', 'gato2.jpg', 'Rubio', 'M', 2,8),
+('sofi', 'oerro1.jpg', 'Rubio', 'H', 2,3),
+('Garfield', 'gato3.jpg', 'Rubio', 'M', 2,12);
 
 SELECT * FROM Animales;
 SELECT * FROM Razas;

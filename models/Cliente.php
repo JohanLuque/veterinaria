@@ -48,4 +48,13 @@ Class Cliente extends Conexion{
       die($e->getCode());
     }
   }
+  public function readCustomer(){
+    try{
+      $query = $this->connection->prepare("CALL spu_listar_clientes()");
+      $query->execute();
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }catch(Exception $e){
+      die($e->getCode());
+    }
+  }
 }

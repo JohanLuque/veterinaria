@@ -51,5 +51,8 @@ if(isset($_GET['operacion'])){
     case "getData":
       echo json_encode($cliente->search(['dni' => $_GET['dni']]));
     break;
+    case "readCustomer":
+      echo json_encode($cliente->readCustomer());
+    break;
   }
 }
