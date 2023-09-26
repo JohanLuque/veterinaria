@@ -62,4 +62,13 @@ class Mascota extends Conexion{
       die($e->getMessage());
     }
   }
+  public function listPet($id=0){
+    try{
+      $query = $this->connection->prepare("CALL spu_listar_mascotas(?)");
+      $query->execute(array($id));
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }catch(Exception $e){
+      die($e->getMessage());
+    }
+  }
 }

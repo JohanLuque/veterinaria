@@ -47,15 +47,27 @@ END $$
 DELIMITER $$
 CREATE PROCEDURE spu_search_mascotas
 (
-IN _idMascota	INT 
+	IN _idmascota 	INT
 )
 BEGIN
-	SELECT clientes. Animales.nombreAnimal, razas.nombreRaza, Mascotas.fotografia, Mascotas.nombre, Mascotas.color, Mascotas.genero 
-	FROM Mascotas
-	INNER JOIN Clientes ON Mascotas.idCliente = Clientes.idCliente
-	INNER JOIN Razas ON Mascotas.idRaza = Razas.idRaza
-	INNER JOIN Animales ON Razas.idAnimal = Animales.idAnimal
-	WHERE Mascotas.idMascota =  _idMascota;
+	SELECT mascotas.idmascota,mascotas.nombre,razas.nombreRaza,animales.nombreAnimal, mascotas.fotografia ,mascotas.color, mascotas.genero
+	FROM mascotas
+	INNER JOIN razas ON razas.idraza = mascotas.idraza
+	INNER JOIN animales ON animales.idanimal = razas.idanimal
+	WHERE mascotas.idmascota = _idmascota;
+END $$
+
+DELIMITER $$
+CREATE PROCEDURE spu_listar_mascotas
+(
+	IN _idcliente 	INT
+)
+BEGIN
+	SELECT mascotas.idmascota,clientes.nombres, clientes.apellidos, mascotas.nombre, mascotas.color, mascotas.genero
+	FROM mascotas
+	INNER JOIN clientes ON clientes.idcliente = mascotas.idcliente
+	INNER JOIN razas ON razas.idraza = mascotas.idraza
+	WHERE mascotas.idcliente = _idcliente;
 END $$
 
 DELIMITER $$
@@ -83,12 +95,4 @@ BEGIN
 	nombreRaza 
 	FROM razas
 	WHERE idanimal = _id;
-END $$
-
-DELIMITER $$
-CREATE PROCEDURE spu_listar_clientes()
-BEGIN
-	SELECT idCliente, 
-	CONCAT(apellidos, (' '), nombres) AS 'Completo'
-	FROM clientes;
 END $$
