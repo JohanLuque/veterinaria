@@ -8,15 +8,10 @@ if(isset($_POST['operacion'])){
 
   switch($_POST['operacion']){
     case 'add':
-        $nombre = $_POST['nombre'];
-        $ruta = "../imagenes/$nombre.jpg" ;
-        if($_POST['fotografia'] != ""){
-          
-        }
         $data = [
           "idCliente"   => $_POST['idCliente'],
           "idRaza"      => $_POST['idRaza'],
-          "nombre"      => $nombre,
+          "nombre"      => $_POST['nombre'],
           "fotografia"  => $_POST['fotografia'],
           "color"       => $_POST['color'],
           "genero"      => $_POST['genero']

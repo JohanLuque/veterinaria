@@ -72,7 +72,8 @@ END $$
 DELIMITER $$
 CREATE PROCEDURE spu_listar_Animal()
 BEGIN 
-	SELECT * FROM animales;
+	SELECT idAnimal, nombreAnimal 
+	FROM animales;
 END $$
 
  DELIMITER $$

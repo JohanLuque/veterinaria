@@ -18,30 +18,7 @@ if(isset($_POST['operacion'])){
     ];
       echo json_encode($cliente->create($parametros));
       break;
-    case "login":
-      $respuesta = [
-        "login"       => false,
-        "apellidos"   => "",
-        "nombres"     => "",
-        "mensaje"     =>""
-      ];
-
-      $data = $cliente->login($_POST['dni']);
-      $claveIngresada = $_POST['claveAcceso'];
-
-      if($data){
-        if(password_verify($claveIngresada, $data['claveAcceso'])){
-          $respuesta['login'] = true;
-          $respuesta['apellidos'] = $data['apellidos'];
-          $respuesta['nombres']   = $data['nombres'];
-        }else{
-          $respuesta['mensaje'] = 'Contraseña incorrecta';
-        }
-      }else{
-        $respuesta['mensaje'] = 'El usuario no existe'; 
-      }
-      echo json_encode($respuesta);
-      break;
+    
   }
 }
 
@@ -54,5 +31,31 @@ if(isset($_GET['operacion'])){
     case "readCustomer":
       echo json_encode($cliente->readCustomer());
     break;
+    case "login":
+      $respuesta = [
+        "login"       => false,
+        "apellidos"   => "",
+        "nombres"     => "",
+        "mensaje"     =>"",
+        "idcliente"   => 0
+      ];
+
+      $data = $cliente->login($_GET['dni']);
+      $claveIngresada = $_GET['claveAcceso'];
+
+      if($data){
+        if(password_verify($claveIngresada, $data['claveAcceso'])){
+          $respuesta['login'] = true;
+          $respuesta['apellidos'] = $data['apellidos'];
+          $respuesta['nombres']   = $data['nombres'];
+          $respuesta['idcliente'] = $data["idCliente"];
+        }else{
+          $respuesta['mensaje'] = 'Contraseña incorrecta';
+        }
+      }else{
+        $respuesta['mensaje'] = 'El usuario no existe'; 
+      }
+      echo json_encode($respuesta);
+      break;
   }
 }

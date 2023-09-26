@@ -53,13 +53,13 @@ class Mascota extends Conexion{
     }
   }
 
-  public function readRaces($id){
+  public function readRaces($id=[]){
     try{
       $query = $this->connection->prepare("CALL spu_listar_razas(?)");
-      $query->execute($id);
+      $query->execute(array($id['idAnimal']));
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }catch(Exception $e){
-      die($e->getCode());
+      die($e->getMessage());
     }
   }
 }
