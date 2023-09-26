@@ -36,5 +36,8 @@ if(isset($_GET['operacion'])){
     case "getPet":
       echo json_encode($mascota->listPet($_GET['idCliente']));
     break;
+    case "getDetails":
+      echo json_encode($mascota->detailsPet($_GET['idmascota']));
+    break;
   }
 }
