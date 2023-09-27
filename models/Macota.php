@@ -75,7 +75,7 @@ class Mascota extends Conexion{
     try{
       $query = $this->connection->prepare("CALL spu_search_mascotas(?)");
       $query->execute(array($id));
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        return $query->fetch(PDO::FETCH_ASSOC);
     }catch(Exception $e){
       die($e->getMessage());
     }
